@@ -1,4 +1,5 @@
 class Pin < ActiveRecord::Base
+  acts_as_votable
   belongs_to :user
 
   has_attached_file :image, styles: { medium: "600x600>", thumb: "400x400>" }, default_url: "/images/:style/missing.png"
