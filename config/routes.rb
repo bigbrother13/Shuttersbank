@@ -6,5 +6,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get ':username' => 'users#show', as: 'user'
+
   root "pins#index"
 end
