@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   get ':username' => 'users#show', as: 'user'
 
   root "pins#index"
+
+  resources :tags, only: [:show]
 end
