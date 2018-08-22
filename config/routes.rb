@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
+
+  resources :pins do
+    collection do
+      get 'search'
+    end
+  end
+
   resources :pins do
     member do
       put "Lile", to: "pins#upvote"

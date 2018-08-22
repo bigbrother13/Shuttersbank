@@ -30,6 +30,7 @@ gem "paperclip", "~> 6.0.0"
 gem 'masonry-rails'
 gem 'acts_as_votable', '~> 0.11.1'
 gem 'pg', '~> 0.20'
+gem 'searchkick'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

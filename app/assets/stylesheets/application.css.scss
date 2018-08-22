@@ -13,6 +13,7 @@
  *= require 'masonry/transitions'
  *= require_self
  */
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -34,7 +35,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 nav.navbar-default {
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+  box-shadow: 0 5px 2px 0 rgba(0, 0, 0, 0.22);
   margin-bottom: 0;
   .navbar-brand {
     a {
@@ -46,9 +47,15 @@ nav.navbar-default {
       }
     }
   }
+
   .navbar-right {
     margin-right: -325px;
   }
+   img {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+      }
 }
 
 #pins {
@@ -57,7 +64,7 @@ nav.navbar-default {
   .box {
     margin: 10px;
     width: 350px;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+    box-shadow: 0 5px 2px 0 rgba(0, 0, 0, 0.22);
     border-radius: 7px;
     text-align: center;
     img {

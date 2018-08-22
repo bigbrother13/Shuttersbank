@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html></html>
 <header>
@@ -16,16 +17,29 @@
 
       <% if user_signed_in? %>
         <ul class="nav navbar-nav navbar-right">
+          <%= form_tag search_pins_path, method: :get, class: "navbar-form navbar-left", role: "search" do %>
+            <p>
+              <%= text_field_tag :search, params[:search], class: "form-control" %>
+              <%= submit_tag "Search", name: nil, class: "btn btn-default" %>
+            </p>
+          <% end %>
+
+          </li>
           <li>
             <%= link_to "New Pin", new_pin_path %>
           </li>
+           <li>
+            <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
           <li>
-            <%= link_to "Account", edit_user_registration_path %>
+            <%= link_to(image_tag(current_user.avatar.url), edit_user_registration_path) %>
           </li>
           <li>
-            <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+            <%= link_to current_user.username , edit_user_registration_path %>
           </li>
         </ul>
+
+
+
       <% else %>
         <ul class="nav navbar-nav navbar-right">
           <li>
@@ -40,22 +54,11 @@
   </nav>
 
   <div class="container">
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, class: "alert alert-info" %>
-    <% end %>
-  </div>
-
-  <div class="row">
-    <div class="col-md-8">
-
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: "alert alert-info" %>
+      <% end %>
     </div>
-
-    <div class="col-md-4">
-        <% tag_cloud(Tag.counts, %w{tag1 tag2 tag3 tag4 tag5}) do |tag, css_class|  %>
-          <%= link_to tag.name, tag_path(tag.name), class: css_class %>
-        <% end %>
-    </div>
-  </div>
-  <%= yield  %>
-</body>
+  </body>
+    <%= yield  %>
+  </body>
 

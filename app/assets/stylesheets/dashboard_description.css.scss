@@ -6,7 +6,7 @@
   width: 100%;
   height: 500px;
   display: table;
-  margin-bottom: 75px;
+  margin-bottom: 10px;
   .banner_content {
     display: table-cell;
     vertical-align: middle;
@@ -38,4 +38,12 @@
     border-bottom-right-radius: 0.25rem;
   }
 
+}
+
+.tags-field {
+  margin: 10px 0;
+}
+
+.pins-block {
+  margin-top: 70px;
 }
