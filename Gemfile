@@ -31,6 +31,8 @@ gem 'masonry-rails'
 gem 'acts_as_votable', '~> 0.11.1'
 gem 'pg', '~> 0.20'
 gem 'searchkick'
+gem 'ancestry'
+gem 'will_paginate', '~> 3.1.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

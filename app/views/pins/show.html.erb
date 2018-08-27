@@ -40,7 +40,10 @@
                 </span>
               <% end %>
 
-              <% if user_signed_in? %>
+              <% if current_user.admin? %>
+                <%= link_to "Edit", edit_admin_pin_path, class: "btn btn-default" %>
+                <%= link_to "Delete", admin_pin_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default" %>
+              <% elsif user_signed_in? && @pin.user == current_user %>
                 <%= link_to "Edit", edit_pin_path, class: "btn btn-default" %>
                 <%= link_to "Delete", pin_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default" %>
               <% end %>

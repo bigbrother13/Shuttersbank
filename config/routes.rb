@@ -1,21 +1,23 @@
 Rails.application.routes.draw do
+  root "pins#index"
   devise_for :users
 
   resources :pins do
     collection do
       get 'search'
     end
-  end
-
-  resources :pins do
     member do
       put "Lile", to: "pins#upvote"
     end
   end
 
-  get ':username' => 'users#show', as: 'user'
-
-  root "pins#index"
-
   resources :tags, only: [:show]
+  resources :categories, only: [:show]
+
+  namespace :admin do
+    resources :pins, except: [:show, :index]
+    resources :categories, except: [:show]
+  end
+
+  get ':username' => 'users#show', as: 'user'
 end

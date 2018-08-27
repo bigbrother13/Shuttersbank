@@ -1,6 +1,7 @@
-class PinsController < ApplicationController
-  before_action :find_pin, only: [:show, :edit, :update, :destroy, :upvote]
-  before_action :set_post, only: :show
+class Admin::PinsController < ApplicationController
+  before_action :find_pin, only: [:edit, :update, :destroy, :upvote]
+  before_action :authenticate_user!
+  before_action :check_admin
 
   def search
     if params[:search].present?
@@ -10,20 +11,23 @@ class PinsController < ApplicationController
     end
   end
 
-  def index
-    @pins = Pin.all.order("created_at DESC")
-  end
-
   def new
     @pin = current_user.pins.build
   end
 
-  def edit
+  def create
+    @pin = current_user.pins.build(pin_params)
+
+    if @pin.save
+      redirect_to @pin, notice: "Seccessfully created new Pin"
+    else
+      render 'new'
+    end
   end
 
   def update
     if @pin.update(pin_params)
-      redirect_to @pin, notice: "Pin was Successfully update!"
+      redirect_to @pin, notice: "Pin was successfully update!"
     else
       render 'edit'
     end
@@ -39,14 +43,16 @@ class PinsController < ApplicationController
     redirect_to :back
   end
 
+  protected
+
+  def check_admin
+    redirect_to root_path, alert: "You do not have permission to access this page" unless current_user.admin?
+  end
+
   private
 
   def pin_params
     params.require(:pin).permit(:title, :description, :image, :all_tags, :category_id)
-  end
-
-  def set_post
-    @pin = Pin.find(params[:id])
   end
 
   def find_pin
